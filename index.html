@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Calculator</title>
+</head>
+
+<body>
+    <!-- Display Results Option 2
+    <label for="finalBill">
+        Your final bill with tip and tax included: $
+        <input id="finalBill" class="finalBill" type="text" value="" readonly>
+    </label> -->
+
+    <script>
+        // Declare variables for program
+        const taxRate = .07; // 7% tax rate
+        const tipRate = .15; // 15% tip rate
+
+        // Calculate total bill with tax
+        function calculateTax(totalBill, taxRate) {
+            return totalBill * taxRate;
+        }
+
+        // Calculate total tip amount on taxed bill
+        function calculateTip(taxBill, tipRate) {
+            return taxBill * tipRate;
+        }
+
+        // Calculate total bill with tax and tip
+        function calculateTotal(taxBill, tipBill) {
+            return taxBill + tipBill;
+        }
+
+        // Gather user input
+        let totalBill = prompt("Enter your total bill: ");
+        let finalBill = 0;
+
+        // Validate user input
+        totalBill = parseFloat(totalBill);
+        if (isNaN(totalBill) || totalBill < 0) {
+            alert("Please enter a valid number.");
+            console.error("Invalid input: " + totalBill);
+        }
+        // If input is valid, calculate tax, tip, and final total
+        else {
+            let taxBill = totalBill + calculateTax(totalBill, taxRate);
+            let tip = calculateTip(taxBill, tipRate);
+            finalBill = calculateTotal(taxBill, tip);
+
+            // Display results to console
+            console.log("Total Bill without Tax: $" + totalBill.toFixed(2));
+            console.log("Total Bill with Tax: $" + taxBill.toFixed(2));
+            console.log("Total Amount to Tip: $" + tip.toFixed(2));
+            console.log("Total Bill with Tax and Tip: $" + finalBill.toFixed(2));
+            
+            // Display results option 1
+            document.write("Your final bill with tip and tax included: $" + finalBill.toFixed(2));
+            
+            // Display results option 2
+            // document.getElementById("finalBill").value = finalBill.toFixed(2);
+        }
+        </script>
+</body>
+
+</html>
